@@ -1,25 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './SpecialColumn.css'
 import SpecialCell from '../SpecialCell/SpecialCell'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
+import {changeFilter, changePage, changeCellsArray, changeCellValue} from '../../actions'
 import paginationSlice from '../../utils/paginationSlice'
 import config from '../../utils/config.json'
 
-
-const SpecialColumn = props => {
-  const [inputFilterState, setInputFilterState] = useState('')
-  const handleChange = (event) => setInputFilterState(event.target.value)
-
+const SpecialColumn = ({cells, page, filterState}) => {
+  const dispatch = useDispatch()
+  const handleChange = (event) => dispatch(changeFilter(event.target.value))
   const handleFilter = () => {
-    if (inputFilterState === '') {
-      return props.cells
+    if (filterState === '') {
+      return cells
     }
-    return props.cells.filter(item => 
-            item.value.toUpperCase().includes(inputFilterState.toUpperCase()) ? item : ''
+    return cells.filter(item => 
+            item.value.toUpperCase().includes(filterState.toUpperCase()) ? item : ''
           )
   }
   
-
   return (
     <section
       className='special-column'
@@ -27,7 +25,7 @@ const SpecialColumn = props => {
       <input
         type='text'
         className='special-cell'
-        value={inputFilterState}
+        value={filterState}
         onChange={handleChange}
         name='filterInput'
       />
@@ -35,7 +33,6 @@ const SpecialColumn = props => {
       {handleFilter().map((cell, i) => 
         <SpecialCell 
           key={i}
-          cellName={cell.value}
           value={cell.value}
         />
       )}
@@ -46,8 +43,9 @@ const SpecialColumn = props => {
 
 const mapStateToProps = (state) => {
   return { 
-    cells: state.cells,
-    page: state.currentPage
+    cells: state.cellsReducer,
+    page: state.pageReducer,
+    filterState: state.filterReducer
    }
 }
 

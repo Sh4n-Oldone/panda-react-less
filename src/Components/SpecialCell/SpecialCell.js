@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 import './SpecialCell.css'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { newCellValue } from '../../actions'
+// import { connect, useDispatch } from 'react-redux'
+// import {changeCellValue} from '../../actions'
 
-const SpecialCell = ({cellName, value}) => {
-  const [inputCellState, setInputCellState] = useState('')
-  const handleChange = (event) => setInputCellState(event.target.value)
-
-  
+const SpecialCell = ({value}) => {
+  // const dispatch = useDispatch()
+  // const handleChange = (event) => dispatch(changeCellValue(event.target.value))
 
   return (
     <li className='special-cell'>
@@ -16,23 +13,18 @@ const SpecialCell = ({cellName, value}) => {
         type='text'
         className='special-cell__input'
         value={value}
-        onChange={handleChange}
-        name={cellName}
+        // onChange={}
       />
     </li>
   )
 }
 
-const mapStateToProps = (state) => {
-  return { 
-    cell: state.cell
-   }
-}
+// const mapStateToProps = (state) => {
+//   return { 
+//     cell: state.cellReducer
+//    }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeCellValue: bindActionCreators(newCellValue, dispatch)
-  }
-}
+// export default connect(mapStateToProps)(SpecialCell)
 
-export default connect(mapStateToProps)(SpecialCell)
+export default SpecialCell

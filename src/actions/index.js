@@ -1,20 +1,27 @@
-export const newCellValue = value => {
+export const changeCellValue = value => {
   return {
-    type: 'CELL_VALUE',
+    type: 'NEW_CELL_VALUE',
     payload: value
   }
 }
 
-export const currentCellsArray = arr => {
+export const changeCellsArray = arr => {
   return {
-    type: 'CELLS_CURRENT',
+    type: 'NEW_CELLS',
     payload: arr
   }
 }
 
-export const currentPage = pageNumber => {
+export const changeFilter = value => {
   return {
-    type: 'PAGE_CURRENT',
+    type: 'NEW_FILTER_VALUE',
+    payload: value
+  }
+}
+
+export const changePage = pageNumber => {
+  return {
+    type: 'NEW_PAGE_VALUE',
     payload: pageNumber
   }
 }
