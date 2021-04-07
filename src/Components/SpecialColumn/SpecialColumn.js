@@ -1,13 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './SpecialColumn.css'
 import SpecialCell from '../SpecialCell/SpecialCell'
+import { connect } from 'react-redux'
+import paginationSlice from '../../utils/paginationSlice'
+import config from '../../utils/config.json'
 
 
-export default function SpecialColumn({ cellsArr }) {
+const SpecialColumn = props => {
   const [inputFilterState, setInputFilterState] = useState('')
-
   const handleChange = (event) => setInputFilterState(event.target.value)
 
+  const handleFilter = () => {
+    if (inputFilterState === '') {
+      return props.cells
+    }
+    return props.cells.filter(item => 
+            item.value.toUpperCase().includes(inputFilterState.toUpperCase()) ? item : ''
+          )
+  }
   
 
   return (
@@ -22,14 +32,23 @@ export default function SpecialColumn({ cellsArr }) {
         name='filterInput'
       />
 
-      {cellsArr.map(cell => 
+      {handleFilter().map((cell, i) => 
         <SpecialCell 
-          key={}
-          cellName={}
-          filter={inputFilterState}
+          key={i}
+          cellName={cell.value}
+          value={cell.value}
         />
       )}
 
     </section>
   )
 }
+
+const mapStateToProps = (state) => {
+  return { 
+    cells: state.cells,
+    page: state.currentPage
+   }
+}
+
+export default connect(mapStateToProps)(SpecialColumn)

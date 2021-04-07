@@ -1,29 +1,38 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './SpecialCell.css'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { newCellValue } from '../../actions'
 
-export default function SpecialCell({cellName, filter}) {
+const SpecialCell = ({cellName, value}) => {
   const [inputCellState, setInputCellState] = useState('')
-  const [isCellVisible, setIsCellVisible] = useState(true)
   const handleChange = (event) => setInputCellState(event.target.value)
-  const handleFilter = () => {
-    if (inputCellState.toUpperCase().search(filter.toString().toUpperCase()) === -1) {
-      setIsCellVisible(false)
-    }
-  }
 
-  useEffect(() => {
-    handleFilter()
-  }, [filter, inputCellState])
+  
 
   return (
-    <li className={`special-cell${isCellVisible ? '' : ' special-cell_disabled'}`}>
+    <li className='special-cell'>
       <input
         type='text'
         className='special-cell__input'
-        value={inputCellState}
+        value={value}
         onChange={handleChange}
         name={cellName}
       />
     </li>
   )
 }
+
+const mapStateToProps = (state) => {
+  return { 
+    cell: state.cell
+   }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeCellValue: bindActionCreators(newCellValue, dispatch)
+  }
+}
+
+export default connect(mapStateToProps)(SpecialCell)
