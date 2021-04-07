@@ -25,3 +25,17 @@ export const changePage = pageNumber => {
     payload: pageNumber
   }
 }
+
+export const addNewCell = (id) => {
+  return {
+    type: 'NEW_CELL',
+    payload: { id, value: ''}
+  }
+}
+
+export const loadUserCells = (cellsArr) => {
+  return {
+    type: 'LOAD_CELLS',
+    payload: cellsArr
+  }
+}

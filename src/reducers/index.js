@@ -7,7 +7,7 @@ import { combineReducers } from 'redux'
 const reducers = combineReducers({
   cellsReducer,
   filterReducer,
-  cellReducer,
+  // cellReducer,
   pageReducer
 })
 
