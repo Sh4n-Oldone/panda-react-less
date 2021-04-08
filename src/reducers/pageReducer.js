@@ -1,7 +1,9 @@
 export const pageReducer = (state = 1, action) => {
   switch(action.type) {
-    case 'NEW_PAGE_VALUE':
-      return action.payload
+    case 'INCREASE_PAGE_VALUE':
+      return state + 1
+    case 'DECREASE_PAGE_VALUE':
+      return state - 1
     default:
       return state
   }

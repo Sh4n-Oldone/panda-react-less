@@ -18,19 +18,31 @@ import { setLocalCells, getLocalCells, removeLocalCells } from '../../utils/cell
 
 const SpecialColumn = ({cells, page, filterState, filterTopDown}) => {
   const dispatch = useDispatch()
+  const itemsOnPage = config.CELLS_ON_PAGE
   const handleChange = (event) => dispatch(changeFilter(event.target.value))
   const handleFilter = () => {
+    const filteredCells = cells.filter(item => 
+      item.value.toUpperCase().includes(filterState.toUpperCase()) ? item : ''
+    )
     if (filterState === '') {
       if (filterTopDown === 'toTop') {
-        return cells.sort((a, b) => b.value.length - a.value.length)
+        const cellsArray = cells.sort((a, b) => b.value.length - a.value.length)
+        return paginationSlice(cellsArray, page, itemsOnPage)
       }
       if (filterTopDown === 'toDown') {
-        return cells.sort((a, b) => a.value.length - b.value.length)
+        const cellsArray = cells.sort((a, b) => a.value.length - b.value.length)
+        return paginationSlice(cellsArray, page, itemsOnPage)
       }
     }
-    return cells.filter(item => 
-            item.value.toUpperCase().includes(filterState.toUpperCase()) ? item : ''
-          )
+    if(filterTopDown === 'toTop') {
+      const cellsArray = filteredCells.sort((a, b) => b.value.length - a.value.length)
+      return paginationSlice(cellsArray, page, itemsOnPage)
+    }
+    if(filterTopDown === 'toDown') {
+      const cellsArray = filteredCells.sort((a, b) => a.value.length - b.value.length)
+      return paginationSlice(cellsArray, page, itemsOnPage)
+    }
+    return filteredCells
   }
   const handleCellChanges = (pos, newValue) => {
     const newarr = cells.filter(item => item.pos === pos ? item.value=newValue : item)

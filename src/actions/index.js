@@ -19,10 +19,15 @@ export const changeFilter = value => {
   }
 }
 
-export const changePage = pageNumber => {
+export const increasePage = () => {
   return {
-    type: 'NEW_PAGE_VALUE',
-    payload: pageNumber
+    type: 'INCREASE_PAGE_VALUE'
+  }
+}
+
+export const decreasePage = () => {
+  return {
+    type: 'DECREASE_PAGE_VALUE'
   }
 }
 
