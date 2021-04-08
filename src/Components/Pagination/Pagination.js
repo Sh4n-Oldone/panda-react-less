@@ -1,19 +1,19 @@
 import React from 'react'
 import './Pagination.css'
 import { connect, useDispatch } from 'react-redux'
-import {increasePage, decreasePage} from '../../actions'
+import {changePage} from '../../actions'
 import config from '../../utils/config.json'
 
 const Pagination = ({page, cells}) => {
   const dispatch = useDispatch()
   const increasePageNumber = () => {
     if(cells.length > (page*config.CELLS_ON_PAGE)) {
-      dispatch(increasePage())
+      dispatch(changePage(page + 1))
     }
   }
   const decreasePageNumber = () => {
     if(page > 1) {
-      dispatch(decreasePage())
+      dispatch(changePage(page - 1))
     }
   }
 
