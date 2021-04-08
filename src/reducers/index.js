@@ -1,13 +1,13 @@
 import {cellsReducer} from './cellsReducer'
-import {cellReducer} from './cellReducer'
 import {filterReducer} from './filterReducer'
 import {pageReducer} from './pageReducer'
+import {topDownFilterReducer} from './topDownFilterReducer'
 import { combineReducers } from 'redux'
 
 const reducers = combineReducers({
   cellsReducer,
   filterReducer,
-  // cellReducer,
+  topDownFilterReducer,
   pageReducer
 })
 

@@ -2,43 +2,66 @@ import React, { useEffect } from 'react'
 import './SpecialColumn.css'
 import SpecialCell from '../SpecialCell/SpecialCell'
 import Pagination from '../Pagination/Pagination'
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from 'uuid'
 import { connect, useDispatch } from 'react-redux'
-import {changeFilter, changeCellsArray, changeCellValue, addNewCell, loadUserCells} from '../../actions'
+import {
+  changeFilter, 
+  changeCellsArray, 
+  toTopFilter,
+  toDownFilter,
+  addNewCell, 
+  loadUserCells
+} from '../../actions'
 import paginationSlice from '../../utils/paginationSlice'
 import config from '../../utils/config.json'
 import { setLocalCells, getLocalCells, removeLocalCells } from '../../utils/cellsStorage'
 
-const SpecialColumn = ({cells, page, filterState}) => {
+const SpecialColumn = ({cells, page, filterState, filterTopDown}) => {
   const dispatch = useDispatch()
   const handleChange = (event) => dispatch(changeFilter(event.target.value))
   const handleFilter = () => {
     if (filterState === '') {
-      return cells
+      if (filterTopDown === 'toTop') {
+        return cells.sort((a, b) => b.value.length - a.value.length)
+      }
+      if (filterTopDown === 'toDown') {
+        return cells.sort((a, b) => a.value.length - b.value.length)
+      }
     }
     return cells.filter(item => 
             item.value.toUpperCase().includes(filterState.toUpperCase()) ? item : ''
           )
   }
-  const handleCellChanges = (id, newValue) => {
-    const newarr = cells.filter(item => item.id === id ? item.value=newValue : item)
+  const handleCellChanges = (pos, newValue) => {
+    const newarr = cells.filter(item => item.pos === pos ? item.value=newValue : item)
     dispatch(changeCellsArray(newarr))
   }
-  const addCell = () => {
+  const handleAddCell = () => {
     dispatch(addNewCell(uuid()))
   }
-  const handleRemoveCell = (id) => {
-    const newarr = cells.filter(item => item.id === id ? '' : item)
+  const handleRemoveCell = (pos) => {
+    const newarr = cells.filter(item => item.pos === pos ? '' : item)
     dispatch(changeCellsArray(newarr))
   }
-  const saveStatusToLocal = (data) => {
+  const handleSaveStatusToLocal = (data) => {
     setLocalCells(data)
   }
-  
+  const changeFilterTopOrDown = () => {
+    if(filterTopDown === 'toDown') {
+      dispatch(toTopFilter())
+    }
+    if(filterTopDown === 'toTop') {
+      dispatch(toDownFilter())
+    }
+    if(filterTopDown === 'default') {
+      dispatch(toTopFilter())
+    }
+  }
+
   useEffect(() => {
     dispatch(loadUserCells(JSON.parse(getLocalCells())))
   }, [])
-  
+
   return (
     <section
       className='special-column'
@@ -53,15 +76,25 @@ const SpecialColumn = ({cells, page, filterState}) => {
         placeholder='Filter'
       />
 
-      <button onClick={addCell}>Add New Cell</button>
-      <button onClick={() => {saveStatusToLocal(cells)}}>Save changes</button>
+      <button 
+        onClick={handleAddCell}
+      >Add New Cell</button>
+      <button 
+        onClick={() => {handleSaveStatusToLocal(cells)}}
+      >Save changes</button>
 
-      <ul className='special-column__cells-list'>
+      <button
+        onClick={() => {changeFilterTopOrDown()}}
+      >MY TABLE</button>
+
+      <ul 
+        className='special-column__cells-list'
+      >
         {handleFilter().map((cell) => 
           <SpecialCell 
-            key={cell.id}
+            key={cell.pos}
             value={cell.value}
-            id={cell.id}
+            pos={cell.pos}
             handleChange={handleCellChanges}
             removeCell={handleRemoveCell}
           />
@@ -78,7 +111,8 @@ const mapStateToProps = (state) => {
   return { 
     cells: state.cellsReducer,
     page: state.pageReducer,
-    filterState: state.filterReducer
+    filterState: state.filterReducer,
+    filterTopDown: state.topDownFilterReducer
    }
 }
 

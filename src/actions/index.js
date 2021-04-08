@@ -26,10 +26,10 @@ export const changePage = pageNumber => {
   }
 }
 
-export const addNewCell = (id) => {
+export const addNewCell = (pos) => {
   return {
     type: 'NEW_CELL',
-    payload: { id, value: ''}
+    payload: { pos, value: ''}
   }
 }
 
@@ -37,5 +37,17 @@ export const loadUserCells = (cellsArr) => {
   return {
     type: 'LOAD_CELLS',
     payload: cellsArr
+  }
+}
+
+export const toTopFilter = () => {
+  return {
+    type: 'FILTER_TO_TOP'
+  }
+}
+
+export const toDownFilter = () => {
+  return {
+    type: 'FILTER_TO_DOWN'
   }
 }

@@ -601,7 +601,9 @@
 //   }
 // ]
 
-export const cellsReducer = (state = [], action) => {
+const defaultCells = []
+
+export const cellsReducer = (state = defaultCells, action) => {
   switch(action.type) {
     case 'NEW_CELL':
       return [...state, action.payload]
