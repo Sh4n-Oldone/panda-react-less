@@ -1,7 +1,5 @@
 import React from 'react'
 import './SpecialCell.css'
-// import { connect, useDispatch } from 'react-redux'
-// import {changeCellValue} from '../../actions'
 
 const SpecialCell = ({pos, value, removeCell, handleChange}) => {
   return (

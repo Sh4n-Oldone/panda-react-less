@@ -14,7 +14,7 @@ import {
 } from '../../actions'
 import paginationSlice from '../../utils/paginationSlice'
 import config from '../../utils/config.json'
-import { setLocalCells, getLocalCells, removeLocalCells } from '../../utils/cellsStorage'
+import { setLocalCells, getLocalCells } from '../../utils/cellsStorage'
 
 const SpecialColumn = ({cells, page, filterState, filterTopDown}) => {
   const dispatch = useDispatch()
@@ -42,7 +42,7 @@ const SpecialColumn = ({cells, page, filterState, filterTopDown}) => {
       const cellsArray = filteredCells.sort((a, b) => a.value.length - b.value.length)
       return paginationSlice(cellsArray, page, itemsOnPage)
     }
-    return filteredCells
+    return paginationSlice(filteredCells, page, itemsOnPage)
   }
   const handleCellChanges = (pos, newValue) => {
     const newarr = cells.filter(item => item.pos === pos ? item.value=newValue : item)
