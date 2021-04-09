@@ -2,7 +2,7 @@ import React from 'react'
 import './Pagination.css'
 import { connect, useDispatch } from 'react-redux'
 import {changePage} from '../actions'
-import config from '../utils/config.json'
+import config from '../../utils/config.json'
 
 const Pagination = ({page, cells}) => {
   const dispatch = useDispatch()

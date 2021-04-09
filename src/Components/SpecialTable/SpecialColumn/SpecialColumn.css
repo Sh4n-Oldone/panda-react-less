@@ -1,4 +1,23 @@
 .special-column {
   display: flex;
   flex-direction: column;
+  margin: 0 auto auto;
+  padding: 0;
+}
+.special-column__control-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.special-column__cells-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.special-column__cells-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
