@@ -1,3 +1,4 @@
 {
-  "CELLS_ON_PAGE": 50
+  "CELLS_ON_PAGE": 50,
+  "NAMES_OF_TABLES": ["First table", "Second table", "Third table"]
 }

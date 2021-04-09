@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import { NAMES_OF_TABLES } from '../SpecialTable/utils/config.json'
 import SpecialTable from '../SpecialTable/SpecialTable'
 
 
@@ -11,7 +12,7 @@ export default function App() {
 
 
       <SpecialTable
-        arrOfNames={['table1', 'table2', 'table3']}
+        arrOfNames={NAMES_OF_TABLES}
       />
 
 

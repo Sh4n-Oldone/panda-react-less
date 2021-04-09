@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './SpecialTable.css'
 import SpecialColumn from './SpecialColumn/SpecialColumn'
 import { Provider } from 'react-redux'
@@ -18,11 +18,8 @@ const newColumn = (tableName, stateCallback, local) => {
           </Provider>
 }
 
-
 export default function SpecialTable({arrOfNames}) {
   let pre = arrOfNames.map(item => {return { table: item, values: []}})
-
-  const [localState, setLocalState] = useState([])
 
   const handleColumnsChanges = (tableName, tableState) => {
     pre.find((obj, index) => {

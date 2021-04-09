@@ -9,8 +9,7 @@ import {
   changeCellsArray, 
   toTopFilter,
   toDownFilter,
-  addNewCell, 
-  loadUserCells
+  addNewCell
 } from './actions'
 import paginationSlice from '../utils/paginationSlice'
 import config from '../utils/config.json'
@@ -55,9 +54,6 @@ const SpecialColumn = ({cells, page, filterState, filterTopDown, tableName, stat
     const newarr = cells.filter(item => item.pos === pos ? '' : item)
     dispatch(changeCellsArray(newarr))
   }
-  // const handleSaveStatusToLocal = (data) => {
-  //   setLocalCells(data)
-  // }
   const changeFilterTopOrDown = () => {
     if(filterTopDown === 'toDown') {
       dispatch(toTopFilter())
@@ -72,14 +68,16 @@ const SpecialColumn = ({cells, page, filterState, filterTopDown, tableName, stat
 
   useEffect(() => {
     const globalStateData = JSON.parse(localState)
-    if(localState) {
-      dispatch(changeCellsArray(
-        globalStateData.find((obj, index) => {
-          if (obj.table === tableName) {
-            return globalStateData[index]
-          }
-        }).values
-      ))
+    const currentColumnState = globalStateData 
+      ? globalStateData.find((obj, index) => {
+        if (obj.table === tableName) {
+          return globalStateData[index]
+        }
+      })
+      : { table: 'notable', values: 'novalues'}
+
+    if (currentColumnState.table !== 'notable') {
+      dispatch(changeCellsArray(currentColumnState.values))
     }
   }, [])
 
@@ -101,9 +99,6 @@ const SpecialColumn = ({cells, page, filterState, filterTopDown, tableName, stat
         <button 
           onClick={handleAddCell}
         >Add New Cell</button>
-        {/* <button 
-          onClick={() => {handleSaveStatusToLocal(cells)}}
-        >Save changes</button> */}
       </div>
 
       <div className='special-column__cells-block'>
