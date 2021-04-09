@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
-import SpecialColumn from '../SpecialColumn/SpecialColumn'
+import SpecialTable from '../SpecialTable/SpecialTable'
+
 
 export default function App() {
 
@@ -8,8 +9,11 @@ export default function App() {
     <div className='App'>
       <div className='page'>
 
-        <SpecialColumn 
-        />
+
+      <SpecialTable
+        arrOfNames={['table1', 'table2', 'table3']}
+      />
+
 
       </div>
     </div>

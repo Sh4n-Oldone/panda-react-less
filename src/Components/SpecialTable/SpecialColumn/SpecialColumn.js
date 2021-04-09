@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './SpecialColumn.css'
-import SpecialCell from '../SpecialCell/SpecialCell'
-import Pagination from '../Pagination/Pagination'
+import SpecialCell from './SpecialCell/SpecialCell'
+import Pagination from './Pagination/Pagination'
 import { v4 as uuid } from 'uuid'
 import { connect, useDispatch } from 'react-redux'
 import {
@@ -11,12 +11,12 @@ import {
   toDownFilter,
   addNewCell, 
   loadUserCells
-} from '../../actions'
-import paginationSlice from '../../utils/paginationSlice'
-import config from '../../utils/config.json'
-import { setLocalCells, getLocalCells } from '../../utils/cellsStorage'
+} from './actions'
+import paginationSlice from './utils/paginationSlice'
+import config from './utils/config.json'
+import { setLocalCells, getLocalCells } from './utils/cellsStorage'
 
-const SpecialColumn = ({cells, page, filterState, filterTopDown}) => {
+const SpecialColumn = ({cells, page, filterState, filterTopDown, tableName}) => {
   const dispatch = useDispatch()
   const itemsOnPage = config.CELLS_ON_PAGE
   const handleChange = (event) => dispatch(changeFilter(event.target.value))
@@ -97,7 +97,7 @@ const SpecialColumn = ({cells, page, filterState, filterTopDown}) => {
 
       <button
         onClick={() => {changeFilterTopOrDown()}}
-      >MY TABLE</button>
+      >{tableName}</button>
 
       <ul 
         className='special-column__cells-list'
