@@ -6,25 +6,25 @@ import { createStore } from 'redux'
 import reducers from './SpecialColumn/reducers'
 import {setLocalData, getLocalData} from './utils/columnsStorage'
 
-const newColumn = (tableName, stateCallback, local) => {
+const newColumn = (tableName, stateCallback, localData) => {
   const store = createStore(reducers);
 
   return  <Provider store={store} key={tableName}>
             <SpecialColumn 
               stateCallback={stateCallback}
               tableName={tableName}
-              localState={local}
+              localState={localData}
             />
           </Provider>
 }
 
 export default function SpecialTable({arrOfNames}) {
-  let pre = arrOfNames.map(item => {return { table: item, values: []}})
+  let generatorOfGlobalState = arrOfNames.map(item => {return { table: item, values: []}})
 
   const handleColumnsChanges = (tableName, tableState) => {
-    pre.find((obj, index) => {
+    generatorOfGlobalState.find((obj, index) => {
       if (obj.table === tableName) {
-        pre[index] = {table: tableName, values: tableState}
+        generatorOfGlobalState[index] = {table: tableName, values: tableState}
         return true
       }
     })
@@ -33,9 +33,14 @@ export default function SpecialTable({arrOfNames}) {
   return (
     
     <section className='special-table'>
-      <button onClick={() => {setLocalData(pre)}}>GLOBAL SAVE</button>
-      {arrOfNames.map(item =>
+      <div className='special-table__columns'>
+        {arrOfNames.map(item =>
         newColumn(item, handleColumnsChanges, getLocalData()))}
+      </div>
+      <button 
+        onClick={() => {setLocalData(generatorOfGlobalState)}}
+        className='special-table__save-button'
+      >GLOBAL SAVE</button>
     </section>
 
   )

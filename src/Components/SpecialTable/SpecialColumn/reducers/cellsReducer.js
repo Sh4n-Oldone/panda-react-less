@@ -1,6 +1,6 @@
-// const defaultCells = [{pos: '1', value: ''}, {pos: '2', value: ''}, {pos: '3', value: ''}]
+const defaultCells = [{pos: 'default1', value: ''}, {pos: 'default2', value: ''}, {pos: 'default3', value: ''}]
 
-const defaultCells = []
+// const defaultCells = []
 
 export const cellsReducer = (state = defaultCells, action) => {
   switch(action.type) {

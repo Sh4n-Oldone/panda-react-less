@@ -75,7 +75,7 @@ const SpecialColumn = ({cells, page, filterState, filterTopDown, tableName, stat
         }
       })
       : { table: 'notable', values: 'novalues'}
-
+      console.table(globalStateData)
     if (currentColumnState.table !== 'notable') {
       dispatch(changeCellsArray(currentColumnState.values))
     }
