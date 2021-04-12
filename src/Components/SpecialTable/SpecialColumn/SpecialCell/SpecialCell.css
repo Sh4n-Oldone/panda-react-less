@@ -1,3 +1,28 @@
-.special-cell_disabled {
-  display: none;
+.special-cell {
+  width: 100%;
+  margin-bottom: 4px;
+  display: flex;
+}
+.special-cell .special-cell__input {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  height: 30px;
+  margin: 0;
+  padding: 0 0 0 5px;
+  font-size: 16px;
+}
+.special-cell .special-cell__del-button {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  background-image: url(../../images/cross.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #ff5757;
+  border: none;
+  cursor: pointer;
+}
+.special-cell .special-cell__del-button:hover {
+  background-color: #ff3131;
 }

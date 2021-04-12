@@ -1,26 +1,11 @@
 .special-column {
   display: flex;
   flex-direction: column;
-  margin: 0 auto auto;
-  padding: 0;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 10px 15px;
 }
 
-.special-column__control-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+@import '../SpecialColumn__blocks/control-block.less';
 
-.special-column__cells-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-}
+@import '../SpecialColumn__blocks/cells-block.less';

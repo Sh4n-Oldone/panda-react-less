@@ -1,0 +1,31 @@
+// main: ../SpecialColumn/SpecialColumn.less
+// out: false
+@import '../utils/vars.less';
+
+.special-column__cells-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .special-column__cells-block_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 2px;
+    border: none;
+    background: none;
+    font: @font;
+    font-weight: 700;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 6px;
+    width: 100%;
+  }
+}

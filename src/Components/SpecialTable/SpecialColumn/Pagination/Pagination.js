@@ -22,12 +22,12 @@ const Pagination = ({page, cells}) => {
         <button 
           className='pagination__button'
           onClick={() => {decreasePageNumber()}}
-        >back</button>
+        >&lt;</button>
         <div className='pagination__page-number'>{page}</div>
         <button 
           className='pagination__button'
           onClick={() => {increasePageNumber()}}
-        >forward</button>
+        >&gt;</button>
     </div>
   )
 }

@@ -13,7 +13,7 @@ const SpecialCell = ({pos, value, removeCell, handleChange}) => {
       <button 
         onClick={() => {removeCell(pos)}}
         className='special-cell__del-button'
-      >del</button>
+      ></button>
     </li>
   )
 }

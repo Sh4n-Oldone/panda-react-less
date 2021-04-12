@@ -1,11 +1,33 @@
+@button-size: 30px;
+
 .special-cell {
+  width: 100%;
+  margin-bottom: 4px;
+  display: flex;
   
-}
+  .special-cell__input {
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    height: @button-size;
+    margin: 0;
+    padding: 0 0 0 5px;
+    font-size: 16px;
+  }
 
-.special-cell_disabled {
-  display: none;
-}
+  .special-cell__del-button {
+    width: @button-size;
+    height: @button-size;
+    margin: 0;
+    background-image: url(../../images/cross.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(255, 87, 87);
+    border: none;
+    cursor: pointer;
 
-.special-cell__input {
-  
+    &:hover {
+      background-color: rgb(255, 49, 49);
+    }
+  }
 }

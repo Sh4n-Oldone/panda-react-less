@@ -1,6 +1,33 @@
+@import '../../utils/vars.less';
+@pag-btn-size: 20px;
+
 .pagination {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  .pagination__button {
+    border: none;
+    width: @pag-btn-size * 1.5;
+    height: @pag-btn-size;
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+
+    &:first-of-type {
+      border-radius: 1rem 8px 8px 1rem;
+    }
+
+    &:last-of-type {
+      border-radius: 8px 1rem 1rem 8px;
+    }
+  }
+
+  .pagination__page-number {
+    margin: 0 5px;
+    font: @font;
+    font-weight: 700;
+    font-size: 17px;
+  }
 }

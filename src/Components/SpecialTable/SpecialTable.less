@@ -1,6 +1,40 @@
+@import './utils/vars.less';
+
 .special-table {
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: 1fr;
-  gap: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 10px 0;
+
+  .special-table__columns {
+    display: flex;
+    max-width: @colums-counter * 400px + @colums-counter * 20px;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .special-table__save-button {
+    max-width: 40%;
+    border: none;
+    font: @font;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 8px 9px;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    cursor:pointer;
+
+    &:hover {
+      background-color: rgb(204, 236, 255);
+    }
+
+    &:active {
+      cursor: none;
+      background-color: rgb(202, 202, 202);
+    }
+  }
 }
