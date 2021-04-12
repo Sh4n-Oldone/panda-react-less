@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/panda-react-less/static/css/main.52aa4daa.chunk.css",
+    "main.css": "/panda-react-less/static/css/main.e32cdfb3.chunk.css",
     "main.js": "/panda-react-less/static/js/main.76779de2.chunk.js",
     "main.js.map": "/panda-react-less/static/js/main.76779de2.chunk.js.map",
     "runtime-main.js": "/panda-react-less/static/js/runtime-main.9a42ce77.js",
@@ -8,14 +8,14 @@
     "static/js/2.cd949c59.chunk.js": "/panda-react-less/static/js/2.cd949c59.chunk.js",
     "static/js/2.cd949c59.chunk.js.map": "/panda-react-less/static/js/2.cd949c59.chunk.js.map",
     "index.html": "/panda-react-less/index.html",
-    "static/css/main.52aa4daa.chunk.css.map": "/panda-react-less/static/css/main.52aa4daa.chunk.css.map",
+    "static/css/main.e32cdfb3.chunk.css.map": "/panda-react-less/static/css/main.e32cdfb3.chunk.css.map",
     "static/js/2.cd949c59.chunk.js.LICENSE.txt": "/panda-react-less/static/js/2.cd949c59.chunk.js.LICENSE.txt",
     "static/media/SpecialCell.css": "/panda-react-less/static/media/cross.06bd4fba.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.9a42ce77.js",
     "static/js/2.cd949c59.chunk.js",
-    "static/css/main.52aa4daa.chunk.css",
+    "static/css/main.e32cdfb3.chunk.css",
     "static/js/main.76779de2.chunk.js"
   ]
 }
